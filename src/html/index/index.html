@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../../static/css/index.css">
+    <link rel="stylesheet" href="../../../static/css/resize.css">
+
+    <style>
+        
+    
+    </style>
+    <title>首页</title>
+</head>
+
+<body>
+    <header>
+        <div class="headerWrapper">
+            <div class="title">
+                <p>首页</p>
+            </div>
+            <div class="header_alert_side">
+                <span class="alert"><img src="../../../static/images/icon/bell (1).png" alt="alert"></span>
+                <p class="alert_text">通知</p>
+        </div>
+        </div>
+    </header>
+    
+    <div class="carouselWrapper">
+        <div class="carousel" id="carousel">
+            <ol>
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+            </ol>
+            <ul>
+                <li><a href=""><img src="../../../static/images/farmer.png"  width="100%"/></a></li>
+                <li><a href=""><img src="../../../static/images/farmer_2.png"  /></a></li>
+                <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
+                <li><a href=""><img src="../../../static/images/farmer_3.png"  /></a></li>
+                <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="contentWrapper">
+            <div class="scrollItem">
+                <p>头条：珠海今日港珠澳大桥通车，农民工兄弟有福了</p>
+            </div>
+            <div class="tipItem">
+                <div class="tipTitle">
+                    <img src="../../../static/images/icon/file.png" alt=""> <span>安全教育培训</span>
+                    <div class="more">
+                        <span><img src="../../../static/images/icon/arrow.png" alt=""></span>
+                    </div>
+                </div>
+                <div class="tipContent">请积极参与安全教育培训哦，答题赢大奖！</div>
+            </div>
+            <div class="tipItem">
+                <div class="tipTitle">
+                    <img src="../../../static/images/icon/wallet.png" alt=""> <span>我的工资</span>
+                    <div class="more">
+                        <span>更多<img src="../../../static/images/icon/arrow.png" alt=""></span>
+                    </div>
+
+                </div>
+                
+                    <div class="salary">
+                        <div class="salaryItem"></div>
+                        <div class="salaryItem"></div>
+                        <div class="salaryItem"></div>
+                    </div>
+                
+            </div>
+            <div class="tipItem">
+                <div class="tipTitle">
+                    <img src="../../../static/images/icon/calendar.png" alt=""> <span>我的考勤</span>
+                    <p>5月份出勤天数：20天</p>
+                    <div class="more">
+                        <span>更多</span><img src="../../../static/images/icon/arrow.png" alt="">
+                    </div>
+
+                </div>
+                <div class="tipContent"></div>
+            </div>
+    </div>
+    <footer>
+        <a href=""><div class="bottom_nav_item acive"><img src="../../../static/images/icon/doc.png" alt="首页"/><span>首页</span></div></a>
+        <a href=""><div class="bottom_nav_item"><img src="../../../static/images/icon/work.png" alt="工作履历"/><span>工作履历</span></div></a>
+        <a href=""><div class="bottom_nav_item"><img src="../../../static/images/icon/command.png" alt="用工评价"/><span>用工评价</span></div></a>
+        <a href=""><div class="bottom_nav_item"><img src="../../../static/images/icon/mine.png" alt="我的"/><span>我的</span></div></a>
+    </footer>
+</body>
+<script>
+    window.onload = function() {
+        var rem = 100 * document.body.clientWidth / 1000;  
+        document.body.style.fontSize = rem + 'px';  
+        window.onresize = function() {    
+            rem = 100 * document.body.clientWidth / 1000;    
+            document.body.style.fontSize = rem + 'px'; 
+        };
+
+        var carousel = document.getElementById('carousel');
+        var aBtn = document.getElementsByTagName('ol')[0].getElementsByTagName('li');
+        var slider = document.getElementsByTagName('ul')[0];
+        var now = 0;
+
+        for(var i = 0;i<aBtn.length; i++){
+        aBtn[i].index = i;
+
+        aBtn[i].onclick = function(){
+            if(this.index == now)return;
+            now = this.index;
+            console.log(now);
+            tab();
+        }
+      }
+      //   设置清除计时器
+      var timer = setInterval(next,2000);
+
+      //   鼠标移入清除计时器
+      slider.onmouseover = function() {
+        clearInterval(timer);
+      }
+
+      //   重新设置清除计时器
+      slider.onmouseout = function() {
+        timer = setInterval(next,2000);
+        console("timer");
+       }
+
+    //    导航器切换
+      function tab(){
+            for(var i=0;i<aBtn.length;i++)
+            {
+                aBtn[i].className='';
+            }
+            aBtn[now].className='active';
+            startMove(slider, {left: -150*now});
+        }
+
+    // 跳转到指定的image
+    
+
+    // 自动
+      function next() {
+          now++;
+          if(now == aBtn.length){
+              now = 0;
+          }
+          tab();
+      }
+
+      function getStyle(obj, name) {
+	    if(obj.currentStyle)
+	    {   
+            console.log(obj.currentStyle[name]);
+		    return obj.currentStyle[name];
+	    }
+	    else
+        console.log(getComputedStyle(obj, false)[name]);
+	    {   
+		    return getComputedStyle(obj, false)[name];
+	    }
+    }
+
+        function startMove(obj,attr,target){
+            clearInterval(obj.timer);
+            obj.setInterval(function (){
+                var current = 0;
+                if(attr == "opacity"){
+                    current = Math.round(parseFloat(getStyle(obj, attr))*100);
+                }
+            })
+        }
+    }
+
+   
+
+
+
+
+   
+
+</script>
+
+</html>
