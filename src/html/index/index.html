@@ -3,15 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../../../static/css/index.css">
     <link rel="stylesheet" href="../../../static/css/resize.css">
-
     <style>
-        .title{ 
-            
-        }
+       
     
     </style>
     <title>首页</title>
@@ -37,21 +34,20 @@
                 <li>2</li>
                 <li>3</li>
                 <li>4</li>
-                <li>5</li>
-                <li>6</li>
+
             </ol>
             <ul>
                 <li><a href=""><img src="../../../static/images/farmer.png"  width="100%"/></a></li>
-                <li><a href=""><img src="../../../static/images/farmer_2.png"  /></a></li>
                 <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
-                <li><a href=""><img src="../../../static/images/farmer_3.png"  /></a></li>
                 <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
+                <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
+               
             </ul>
         </div>
     </div>
     <div class="contentWrapper">
             <div class="scrollItem">
-                <p>头条：珠海今日港珠澳大桥通车，农民工兄弟有福了</p>
+                <span>头条：珠海今日港珠澳大桥通车，农民工兄弟有福了</span><span>头条：珠海今日港珠澳大桥通车，农民工兄弟有福了</span>
             </div>
             <div class="tipItem">
                 <div class="tipTitle">
@@ -97,6 +93,7 @@
         <a href=""><div class="bottom_nav_item"><img src="../../../static/images/icon/mine.png" alt="我的"/><span>我的</span></div></a>
     </footer>
 </body>
+<script src="../../../static/js/swiper.js"></script>
 <script>
     window.onload = function() {
         var rem = 100 * document.body.clientWidth / 1000;  
@@ -108,42 +105,49 @@
 
         var carousel = document.getElementById('carousel');
         var aBtn = document.getElementsByTagName('ol')[0].getElementsByTagName('li');
-        var slider = document.getElementsByTagName('ul')[0];
+        var slidersWidth  = document.getElementsByTagName('ul')[0];
+        var sliders = document.getElementsByTagName('ul')[0].getElementsByTagName('li');
+        var scroll = document.getElementsByClassName('scrollItem')[0];
         var now = 0;
+        // 轮播长度
+        slidersWidth.style.width = sliders.length*sliders[0].offsetWidth+"px";
+        
+        setInterval(scrollNext,50);
 
-        for(var i = 0;i<aBtn.length; i++){
-        aBtn[i].index = i;
-
+        function scrollNext() {
+            var scrollNow = 0;
+            scrollNow++;
+                if(scrollNow == aBtn.length){
+                    scrollNow = 0;
+            }
+            startMove(slidersWidth, {left: -4*now});
+        }
+      
+        
+       for(var i = 0;i<aBtn.length; i++){
         aBtn[i].onclick = function(){
-            if(this.index == now)return;
-            now = this.index;
-            console.log(now);
-            tab();
+             clearInterval(timer);
+             if(this.index == now)return;
+             now = this.index;
+             tab();
+            
         }
       }
-      //   设置清除计时器
-      var timer = setInterval(next,2000);
-
-      //   鼠标移入清除计时器
-      slider.onmouseover = function() {
-        clearInterval(timer);
-      }
-
-      //   重新设置清除计时器
-      slider.onmouseout = function() {
-        timer = setInterval(next,2000);
-        console("timer");
-       }
 
     //    导航器切换
       function tab(){
+          
             for(var i=0;i<aBtn.length;i++)
-            {
+            {   
                 aBtn[i].className='';
-            }
+            } 
             aBtn[now].className='active';
-            startMove(slider, {left: -150*now});
-        }
+                    startMove(slidersWidth, {left: -sliders[0].offsetWidth*now});
+                    // console.log(sliders[now]);
+                }
+             
+           
+        
 
     // 跳转到指定的image
     
@@ -156,37 +160,21 @@
           }
           tab();
       }
+        //   设置清除计时器
+        var timer = setInterval(next,2000);
 
-      function getStyle(obj, name) {
-	    if(obj.currentStyle)
-	    {   
-            console.log(obj.currentStyle[name]);
-		    return obj.currentStyle[name];
-	    }
-	    else
-        console.log(getComputedStyle(obj, false)[name]);
-	    {   
-		    return getComputedStyle(obj, false)[name];
-	    }
-    }
+        //   鼠标移入清除计时器
+        slidersWidth.onmouseover = function() {
+        clearInterval(timer);
+        }
 
-        function startMove(obj,attr,target){
-            clearInterval(obj.timer);
-            obj.setInterval(function (){
-                var current = 0;
-                if(attr == "opacity"){
-                    current = Math.round(parseFloat(getStyle(obj, attr))*100);
-                }
-            })
+        //   重新设置清除计时器
+        slidersWidth.onmouseout = function() {
+        timer = setInterval(next,2000);
+        // console("timer");
         }
     }
-
-   
-
-
-
-
-   
+       
 
 </script>
 
