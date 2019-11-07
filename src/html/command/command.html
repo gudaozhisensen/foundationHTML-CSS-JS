@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我要评价</title>
+    <link rel="stylesheet" href="../../../static/css/resize.css">
+    <link rel="stylesheet" href="../../../static/css/common.css">
+    <link rel="stylesheet" href="../../../static/css/luli.css">
+    <style>
+        .commandTab {
+            display: flex;
+            text-align: center;
+            width: 90%;
+            margin: 0 auto;
+            padding-bottom: 1.5rem;
+        }
+        .commandItem {
+            flex: 1;
+            font-family: MicrosoftYaHei;
+            font-size: 1.1rem;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #393939;
+        }
+        #command, #command_by_me, #law{
+            padding-top: 1rem;
+            /* display: none; */
+        }
+        .underline_active {
+            border-radius: 3px;
+            border-bottom: 0.2rem solid #b22329;
+        }
+        .added_part {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            right: 50%;
+            margin-left: -2rem;
+        }
+        .tipContent {
+            height: auto;
+        }
+        .contentDate {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    
+       .playTime {
+           color: #b22329 !important;
+       }
+       .picContent {
+           padding: 1rem 0;
+       }
+       .add_command {
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        margin-left: -6rem;
+        width: 10rem;
+        height: 1.5rem;
+        background-color: #b22329;
+        border-radius: 3rem;
+        padding: 1rem;  
+       }
+       .add_command span {
+            color: #ffffff;
+            font-size: 1.3rem;
+            
+       }
+       .command_btn {
+            bottom: 4.5rem;
+            text-align: center;      
+       }
+       .command_btn span {
+            padding: 0 0.8rem;
+       }
+       .lawPromise {
+            position: relative;
+            width: 81%;
+            margin: 0 auto;
+            padding-top: 3rem;
+            font-family: MicrosoftYaHei;
+            font-size: 1.1rem;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #393939;
+            text-indent: 2rem;
+            line-height: 1.5rem;
+        }
+       .advisory_btn {
+            top: 8rem;
+       }
+
+    </style>
+</head>
+<body>
+        <header>
+                <div class="headerWrapper">
+                    <div class="title">
+                        <p>我要评价</p>
+                    </div>
+                   
+                </div>
+        </header>
+    
+        <div class="contentWrapper">
+            <div class="commandTab">
+                <div class="commandItem" onclick="tab(1)"><span class="underline_active">收到的评价</span></div>
+                <div class="commandItem"  onclick="tab(2)"><span>我发起的评价</span></div>
+                <div class="commandItem"  onclick="tab(3)"><span>法律维权</span></div>
+        </div>
+        <div class="command_content">
+            <!-- 收到的评价 -->
+            <div id="command_1" style="display: block;">
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>干活不认真</span> 
+                                <div class="more">
+                                    <span><img src="../../../static/images/icon/st-sad-face.png" alt="" width="48rem;"></span>
+                                </div>
+                            </div>
+                            <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent"> 2017-10-11 </div>
+                </div>
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>私生活不检点</span> 
+                                <div class="more">
+                                    <span><img src="../../../static/images/icon/st-sad-face.png" alt="" width="48rem;"></span>
+                                </div>
+                            </div>
+                            <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent"> 2017-10-11 </div>
+                </div>
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>态度棒棒的</span> 
+                                <div class="more">
+                                    <span><img src="../../../static/images/icon/Happy_face.png" alt="" width="48rem;"></span>
+                                </div>
+                            </div>
+                            <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent"> 2017-10-11 </div>
+                </div>
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>态度还不错</span> 
+                                <div class="more">
+                                    <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
+                                </div>
+                            </div>
+                            <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent"> 2017-10-11 </div>
+                </div>
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>态度还不错</span> 
+                                <div class="more">
+                                    <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
+                                </div>
+                            </div>
+                            <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent"> 2017-10-11 </div>
+                </div>
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>态度还不错</span> 
+                                <div class="more">
+                                    <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
+                                </div>
+                            </div>
+                            <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent"> 2017-10-11 </div>
+                </div>
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>态度还不错</span> 
+                                <div class="more">
+                                    <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
+                                </div>
+                            </div>
+                            <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent"> 2017-10-11 </div>
+                </div>
+                <div class="added_part">
+                        <img src="../../../static/images/icon/plus.png" alt="" width="64rem;">
+                </div>
+            </div>
+
+            <!-- 发起的评价 -->
+            <div id="command_2" style="display: none;">
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>饭不好吃</span> 
+                                <div class="more">
+                                    <span class="playBtn"><img src="../../../static/images/icon/play.png" alt="" width="40rem;"></span>
+                                    <span class="playTime">00:34</span>
+                                </div>
+                            </div>
+                            <div class="tipContent">
+                                
+                                <span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent picContent">
+                                <img src="../../../static/images/command.png" alt="" width="64rem;">
+                                <img src="../../../static/images/command.png" alt="" width="64rem;">
+                            <span class="contentDate">2017-10-11  17:10</span></div>
+                </div>
+
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>今天的菜很好吃</span> 
+                                <div class="more">
+                                    <span class="playBtn"><img src="../../../static/images/icon/stop.png" alt="" width="40rem;"></span>
+                                    <span class="playTime">00:54</span>
+                                </div>
+                            </div>
+                            <div class="tipContent">
+                                
+                                <span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent picContent">
+                                <img src="../../../static/images/command.png" alt="" width="64rem;">
+                                <img src="../../../static/images/command.png" alt="" width="64rem;">
+                            <span class="contentDate">2017-10-11  17:10</span></div>
+                </div>
+
+                <div class="add_command command_btn">
+                    <img src="../../../static/images/icon/plus_w.png" alt="" width="30rem;"><span>添加评价</span>
+                </div>
+            </div>
+
+            <!-- 法律维权 -->
+            <div id="command_3" style="display: none;">
+                <div class="lawPromise">
+                    <p>如果您需要帮助如拖欠工资款,工伤赔付,安全保险...请联系我们,我们会为您竭尽全力!!!</p>
+                    <div class="add_command advisory_btn">
+                    <span>一键咨询</span>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+        
+    <footer>
+                <a href="../index/index.html"><div class="bottom_nav_item "><img src="../../../static/images/icon/doc.png" alt="首页"/><span>首页</span></div></a>
+                <a href="../luli/luli.html"><div class="bottom_nav_item"><img src="../../../static/images/icon/work.png" alt="工作履历"/><span>工作履历</span></div></a>
+                <a href="#"><div class="bottom_nav_item acive"><img src="../../../static/images/icon/command.png" alt="用工评价"/><span>用工评价</span></div></a>
+                <a href="../mine_info/info.html"><div class="bottom_nav_item"><img src="../../../static/images/icon/mine.png" alt="我的"/><span>我的</span></div></a>
+    </footer>
+
+<script src="../../../static/js/switch.js"></script>
+<script src="../../../static/js/swiper.js"></script>
+
+<script>
+    document.onload = function(){
+        var command_1 = document.getElementById('command_1');
+        
+    }
+</script>
+</body>
+</html>
