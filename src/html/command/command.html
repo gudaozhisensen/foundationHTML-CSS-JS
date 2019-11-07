@@ -201,7 +201,7 @@
                         </div>     
                             <div class="tipContent"> 2017-10-11 </div>
                 </div>
-                <div class="added_part">
+                <div class="added_part" onclick="loadMore()">
                         <img src="../../../static/images/icon/plus.png" alt="" width="64rem;">
                 </div>
             </div>
@@ -270,14 +270,21 @@
                 <a href="../mine_info/info.html"><div class="bottom_nav_item"><img src="../../../static/images/icon/mine.png" alt="我的"/><span>我的</span></div></a>
     </footer>
 
-<script src="../../../static/js/switch.js"></script>
-<script src="../../../static/js/swiper.js"></script>
+    <script src="../../../static/js/switch.js"></script>
+    <script src="../../../static/js/swiper.js"></script>
 
 <script>
-    document.onload = function(){
+    window.onload = function(){
         var command_1 = document.getElementById('command_1');
+        var tipItem = command_1.getElementsByClassName('tipItem');
+        command_1.style.height = tipItem.length*tipItem[0].offsetHeight+"px";
+        console.log(command_1.style.height);
         
+        function loadMore() {
+            console.log(11);
+        }
     }
 </script>
+
 </body>
 </html>
