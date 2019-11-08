@@ -14,12 +14,15 @@
             text-align: center;
             width: 90%;
             margin: 0 auto;
-            padding-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .command_content {
+            overflow: hidden;
         }
         .commandItem {
             flex: 1;
             font-family: MicrosoftYaHei;
-            font-size: 1.1rem;
+            /* font-size: 1.1rem; */
             font-weight: normal;
             font-stretch: normal;
             letter-spacing: 0px;
@@ -201,7 +204,19 @@
                         </div>     
                             <div class="tipContent"> 2017-10-11 </div>
                 </div>
-                <div class="added_part" onclick="loadMore()">
+                <div class="tipItem">
+                        <div class="underLine">
+                            <div class="tipTitle">
+                                <span>态度还不错</span> 
+                                <div class="more">
+                                    <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
+                                </div>
+                            </div>
+                            <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
+                        </div>     
+                            <div class="tipContent"> 2017-10-11 </div>
+                </div>
+                <div class="added_part" onclick="load()">
                         <img src="../../../static/images/icon/plus.png" alt="" width="64rem;">
                 </div>
             </div>
@@ -274,16 +289,37 @@
     <script src="../../../static/js/swiper.js"></script>
 
 <script>
-    window.onload = function(){
-        var command_1 = document.getElementById('command_1');
-        var tipItem = command_1.getElementsByClassName('tipItem');
-        command_1.style.height = tipItem.length*tipItem[0].offsetHeight+"px";
-        console.log(command_1.style.height);
+        var command_content = document.querySelector('.command_content');
+        // header 高度
+        var headerHeight = document.querySelector('.headerWrapper');
+        headerHeight = window.getComputedStyle(headerHeight,null).height;
+        // footer高度
+        var footerHeight = document.getElementsByTagName('footer')[0];
+        footerHeight = window.getComputedStyle(footerHeight,null).height;
+        // switch tab高度
+        var tabHeight = document.querySelector('.commandTab');
+        tabHeight = tabHeight.offsetHeight;
         
-        function loadMore() {
-            console.log(11);
+        var command_1 = document.getElementById('command_1');
+        // 每个tab item高度
+        var tipItem = command_1.getElementsByClassName('tipItem');
+        // 显示区域高度，screen.height显示器高度
+        commandHeight = screen.height-parseInt(headerHeight)-parseInt(footerHeight)-tabHeight;
+       
+        // 文档区能显示的item个数
+        var count =Math.round(commandHeight/tipItem[0].offsetHeight);
+        console.log("item:"+count);
+        command_content.style.height = count*tipItem[0].offsetHeight+"px";
+        console.log("height:"+command_content.style.height);
+        command_1.style.height = tipItem.length*tipItem[0].offsetHeight+"px";
+        
+        
+
+    function load() {
+        console.log(11);
+            startMove(command_1,{top:tipItem[0].offsetHeight*count});
         }
-    }
+    
 </script>
 
 </body>

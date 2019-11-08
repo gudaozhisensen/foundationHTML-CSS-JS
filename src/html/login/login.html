@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录页</title>
+    <link rel="stylesheet" href="../../../static/css/common.css">
+    <link rel="stylesheet" href="../../../static/css/resize.css">
+    <style>
+        body{
+            background-color: #fafafa;
+        }
+        .loginTitleWrapper {
+            padding: 0 1rem 5rem;
+        }
+        .loginTitle {
+            padding: 2.5rem  0;
+            text-align: center;
+            font-family: MicrosoftYaHei;
+            font-size: 2rem;
+            font-weight: bold;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #b22329;
+        }
+        .loginImg {
+            width: 100%;
+        }
+        .loginContent {
+            margin: 1rem 0.9rem;
+        }
+    
+        .loginItem {
+            display: block;
+            width: 95%;
+            padding: 1rem 0.5px 1rem 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            margin: 0 auto 1.4rem auto;
+        }
+        .loginRadio {
+            font-family: MicrosoftYaHei;
+            font-size: 1.1rem;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #b22329;
+            text-indent: 2rem;
+            line-height: 1.5rem;   
+        }
+        .submit {
+            background-color: #b22329;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        input[type="radio"] + label,.alert {
+            font-size: 1rem;
+            color: #b22329;
+            padding-bottom: 1rem;
+        }
+        input[type="radio"] + label::before {
+            content: "\a0"; /*不换行空格*/
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 0.5rem;
+            width: 1.3rem;
+            height: 1.3rem;
+            margin-right: 0.7rem;
+            border-radius: 50%;
+            border: 1px solid #cccccc;
+            text-indent: 0.15rem;
+            line-height: 2; 
+        }
+        input[type="radio"]:checked + label::before {
+            background-color: #b22329;
+            background-clip: content-box;
+            padding: 0.1rem;
+        }
+        input[type="radio"] {
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+        }
+        #radio {
+            text-align: left;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+        <header>
+            <div class="headerWrapper">
+                <div class="title">
+                    <p>登录</p>
+                </div>
+            </div>
+        </header>
+        <div class="loginWrapper">
+
+            <div class="loginTitleWrapper">
+                <div class="loginTitle">
+                    <span>工友之家</span>
+                </div>
+                <div class="loginImg">
+                    <img src="../../../static/images/worker.png" alt="" width="100%">
+                </div> 
+            </div> 
+
+            <div class="loginContent">
+                <div class="alert">
+                    <p>身份证或手机号格式错误</p>
+                </div>
+                <form action="" method="">
+                    <input type="text" class="loginItem" name="user_id" id="" placeholder="请输入身份证号">
+                    <input type="text" class="loginItem" name="phone_number" id="" placeholder="请输入手机号" attern="[0-9]{11}" title="请输入11位手机号" maxlength="11">
+                    <input class="loginItem submit" type="submit" value="发送验证码">
+                </form>
+                <input class="loginRadio" type="radio" name="" id="radio" value=""/>
+                    <label for="radio" >我同意用户使用协议</label>
+            </div>
+        </div>
+
+</body>
+</html>

@@ -97,7 +97,7 @@ header {
     letter-spacing: 0.1rem;
     color: #515151;
 }
-.more >span img {
+.more span img {
     vertical-align: middle;
 }
 .tipContent {
@@ -146,4 +146,39 @@ footer > a {
 
 .contentWrapper {
     margin: 1rem 0;
+}
+
+/*detail of salary and luli css */
+
+.detailWrapper {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+table {
+    color: #8d8d8d;
+    width: 100%;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 1px 4px 2px #b3b3b3; /* 老的 Firefox */
+    box-shadow: 1px 4px 2px #b3b3b3;
+    border-radius: 10px;
+    font-family: MicrosoftYaHei;
+    font-weight: normal;
+    font-stretch: normal;
+}
+
+table th,table tr td {
+    border: 1px solid #cccccc;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.back{
+    color: #8d8d8d;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.back img {
+    vertical-align: middle;
 }

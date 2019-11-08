@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../../static/css/resize.css">
+    <link rel="stylesheet" href="../../../static/css/common.css">
+    <link rel="stylesheet" href="../../../static/css/luli.css">
+    <title>noticeDetail</title>
+    <style>
+        .detailWrapper {
+            width: 90%;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            -moz-box-shadow: 1px 4px 2px #b3b3b3; /* 老的 Firefox */
+            box-shadow: 1px 4px 2px #b3b3b3;
+        }
+        .detailContent {
+            margin-top: 2rem;
+            padding: 1rem;
+            position: relative;
+        }
+        .itemTopDate {
+                font-size: 0.1rem;
+                font-family: MicrosoftYaHei;
+                font-weight: normal;
+                font-stretch: normal;
+                letter-spacing: 1px;
+                color: #afafaf;
+                text-align: center;
+            }
+        .contentTitle, .contentText {
+            margin: 0 auto;
+            font-family: MicrosoftYaHei;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #393939;
+            line-height: 1.5;
+        }
+        .contentTitle {
+            font-size: 2rem;
+            text-align: center;
+        }
+        .contentText {
+            position: relative;
+            padding-top: 1rem;
+            font-size: 1.1rem;
+            text-indent: 2rem;
+        }
+        .contentImg {
+            padding: 1.5rem 0;
+        }
+        .rightSide {
+            font-family: MicrosoftYaHei;
+            font-weight: normal;
+            font-stretch: normal;
+            text-align: right;
+        }
+        .rightSide div:first-child {
+            color: #b22329;
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+        <header>
+                <div class="headerWrapper">
+                    <div class="back">
+                        <label for="" onclick="goBack()"><img src="../../../static/images/icon/left_arrow.png" alt="" width="15rem"></label><span>通知列表</span>
+                    </div>
+                    <div class="title">
+                        <p>天气预警</p>
+                    </div>
+                   
+                </div>
+        </header>
+            <div class="detailWrapper">
+                <div class="detailContent">
+                    <div class="contentTitle"><span>今天下午有暴雨</span></div>
+                    <div class="itemTopDate"><span>2018-04-25 16:36:18</span></div>
+                    <div class="contentText">请各个班组人员及时准备各种事宜，妥善 施工！！！</div>
+                    <div class="contentImg">
+                        <img src="../../../static/images/notice.png" alt="" width="100%">
+                    </div>
+                    <div class="rightSide">
+                        <div>A施工总包方</div>
+                        <div>2018-04-25 16:36:18</div>
+                    </div>
+                </div>
+            </div>
+        <footer>
+                <a href="../index/index.html"><div class="bottom_nav_item   "><img src="../../../static/images/icon/doc.png" alt="首页"/><span>首页</span></div></a>
+                <a href="../luli/luli.html"><div class="bottom_nav_item acive"><img src="../../../static/images/icon/work.png" alt="工作履历"/><span>工作履历</span></div></a>
+                <a href="../command/command.html"><div class="bottom_nav_item"><img src="../../../static/images/icon/command.png" alt="用工评价"/><span>用工评价</span></div></a>
+                <a href="../mine_info/info.html"><div class="bottom_nav_item"><img src="../../../static/images/icon/mine.png" alt="我的"/><span>我的</span></div></a>
+        </footer>
+<script src="../../../static/js/common.js"></script>
+</body>
+</html>
