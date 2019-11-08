@@ -1,6 +1,11 @@
 body {
     overflow: hidden;
 }
+/* bottom tab active */
+
+.active_tab span {
+    color: #b22329 !important;
+}
 /* header css */
 header {
     padding: 0.5rem;

@@ -17,7 +17,8 @@
             padding-bottom: 0.5rem;
         }
         .command_content {
-            overflow: hidden;
+            /* overflow: hidden; */
+            height: auto;
         }
         .commandItem {
             flex: 1;
@@ -279,10 +280,10 @@
     </div>
         
     <footer>
-                <a href="../index/index.html"><div class="bottom_nav_item "><img src="../../../static/images/icon/doc.png" alt="首页"/><span>首页</span></div></a>
-                <a href="../luli/luli.html"><div class="bottom_nav_item"><img src="../../../static/images/icon/work.png" alt="工作履历"/><span>工作履历</span></div></a>
-                <a href="#"><div class="bottom_nav_item acive"><img src="../../../static/images/icon/command.png" alt="用工评价"/><span>用工评价</span></div></a>
-                <a href="../mine_info/info.html"><div class="bottom_nav_item"><img src="../../../static/images/icon/mine.png" alt="我的"/><span>我的</span></div></a>
+                <a href="../index/index.html"><div class="bottom_nav_item "><img src="../../../static/images/icon/doc_gray.png" alt="首页"/><span>首页</span></div></a>
+                <a href="../luli/luli.html"><div class="bottom_nav_item"><img src="../../../static/images/icon/work_gray.png" alt="工作履历"/><span>工作履历</span></div></a>
+                <a href="#" ><div class="bottom_nav_item active_tab"><img src="../../../static/images/icon/command.png" alt="用工评价"/><span>用工评价</span></div></a>
+                <a href="../mine_info/info.html"><div class="bottom_nav_item"><img src="../../../static/images/icon/mine_gray.png" alt="我的"/><span>我的</span></div></a>
     </footer>
 
     <script src="../../../static/js/switch.js"></script>
@@ -309,15 +310,17 @@
         // 文档区能显示的item个数
         var count =Math.round(commandHeight/tipItem[0].offsetHeight);
         console.log("item:"+count);
-        command_content.style.height = count*tipItem[0].offsetHeight+"px";
-        console.log("height:"+command_content.style.height);
+        // command_content.style.height = count*tipItem[0].offsetHeight+"px";
+        // console.log("height:"+command_content.style.height);
         command_1.style.height = tipItem.length*tipItem[0].offsetHeight+"px";
         
         
 
     function load() {
         console.log(11);
-            startMove(command_1,{top:tipItem[0].offsetHeight*count});
+        console.log(parseInt(window.getComputedStyle(command_1,null).top) );
+        
+            startMove(command_1,{top: -tipItem[0].offsetHeight*count});
         }
     
 </script>
