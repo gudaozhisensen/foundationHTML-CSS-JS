@@ -8,8 +8,88 @@
 
     <link rel="stylesheet" href="../../../static/css/resize.css">
     <link rel="stylesheet" href="../../../static/css/common.css">
+        <style>
+            .addItem {
+                padding: 1rem;
+                margin-bottom: 0.5rem;
+                background-color: #f7f7f7;
+                font-family: MicrosoftYaHei;
+                font-size: 1rem;
+                font-weight: normal;
+                font-stretch: normal;
+                letter-spacing: 0px;
+                color: #565656;
+            }
+            input[type="radio"] + label,.alert {
+            font-size: 1rem;
+            padding-bottom: 1rem;
+        }
+        input[type="radio"] + label::before {
+            content: "\a0"; /*不换行空格*/
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 0.5rem;
+            width: 1.3rem;
+            height: 1.3rem;
+            margin-right: 0.7rem;
+            border-radius: 50%;
+            border: 1px solid #cccccc;
+            text-indent: 0.15rem;
+            line-height: 2; 
+        }
+        input[type="radio"]:checked + label::before {
+            background-color: #b22329;
+            background-clip: content-box;
+            padding: 0.1rem;
+        }
+        input[type="radio"] {
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+        }
+        </style>
+
 </head>
 <body>
-    
+    <header>
+        <div class="headerWrapper">
+            <div class="title">
+                <p>添加评论</p>
+            </div>
+           
+        </div>
+</header>
+
+<div class="addWrapper">
+    <div class="addItem">
+        <div class="selectTitle">
+                <span>选择施工总包</span> 
+        </div>
+        <label for="selectPro">
+            <select name="" id="selectPro">
+                <option value="" selected="selected">广东建粤工程有限公司</option>
+                <option value="">广东建粤工</option>
+                <option value="">广东建粤工程有限</option>
+            </select>
+        </label>
+    </div>
+    <div class="addItem">
+            <div class="selectTitle">
+                    <span>选择施工总包</span> 
+            </div>
+            <label for="selectLevel">
+                    <input type="radio" name="level" id="great"> <label for="great">优秀</label>
+                   <input type="radio" name="level" id="good"><label for="good">良好</label>
+                    <input type="radio" name="level" id="bad"><label for="bad">差评</label>
+            </label>
+    </div>
+    <div class="addItem">
+            <div class="selectTitle">
+                    <span>评价内容</span> 
+            </div>
+            <label for="selectText">
+               <textarea name="" id="selectText" cols="40" rows="10" placeholder="请输入评价，50个字以内" ></textarea>
+            </label>
+    </div>
+</div>
 </body>
 </html>

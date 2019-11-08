@@ -19,6 +19,7 @@
         .command_content {
             /* overflow: hidden; */
             height: auto;
+            position: relative;
         }
         .commandItem {
             flex: 1;
@@ -99,7 +100,19 @@
        .advisory_btn {
             top: 8rem;
        }
-
+       .bgBlur {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+	    background-color: rgba(0,0,0,0.5);
+       }
+       #alertContent {
+        width: 70%;
+        margin: 12rem auto;
+       }
+       
     </style>
 </head>
 <body>
@@ -262,20 +275,39 @@
                             <span class="contentDate">2017-10-11  17:10</span></div>
                 </div>
 
-                <div class="add_command command_btn">
+                <a href="./addCammand.html">
+                    <div class="add_command command_btn" >
                     <img src="../../../static/images/icon/plus_w.png" alt="" width="30rem;"><span>添加评价</span>
                 </div>
+                </a>
             </div>
 
             <!-- 法律维权 -->
             <div id="command_3" style="display: none;">
                 <div class="lawPromise">
                     <p>如果您需要帮助如拖欠工资款,工伤赔付,安全保险...请联系我们,我们会为您竭尽全力!!!</p>
-                    <div class="add_command advisory_btn">
+                    <div class="add_command advisory_btn" onclick="alertLawNumber()">
                     <span>一键咨询</span>
                     </div>
                 </div>
             </div>
+
+            <div class="bgBlur" style="display: none;">
+            <div id="alertContent">
+                    <div class="tipItem">
+                            <div class="underLine">
+                                <div class="tipTitle">
+                                    <span>干活不认真</span> 
+                                    <div class="more">
+                                        <span><img src="../../../static/images/icon/st-sad-face.png" alt="" width="48rem;"></span>
+                                    </div>
+                                </div>
+                                <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
+                            </div>     
+                                <div class="tipContent"> 2017-10-11 </div>
+                    </div>
+            </div>
+        </div>
         </div>  
     </div>
         
@@ -323,6 +355,18 @@
             startMove(command_1,{top: -tipItem[0].offsetHeight*count});
         }
     
+    var bgBlur = document.querySelector('.bgBlur');
+
+    function alertLawNumber() {
+        bgBlur.style.display = "block";
+    }
+   
+    window.onclick = function close(e) {
+
+	    if (e.target == bgBlur) {
+		    bgBlur.style.display = "none";
+	}
+}
 </script>
 
 </body>
