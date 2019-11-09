@@ -69,13 +69,17 @@
                     </div>
 
                 </div>
-                
+                <div class="salaryWrapper">
+                        <img src="../../../static/images/icon/left_arrow_small.png" alt="" width="16rem" height="16rem" class="salaryPrev">
                     <div class="salary">
-                        <div class="salaryItem"></div>
-                        <div class="salaryItem"></div>
-                        <div class="salaryItem"></div>
+                        <div class="salaryItem"><span class="salaryDetail">8625.00 元</span></div>
+                        <div class="salaryItem"><span class="salaryDetail">8625.00 元</span></div>
+                        <div class="salaryItem"><span class="salaryDetail">8625.00 元</span></div>
+                        <div class="salaryItem"><span class="salaryDetail">8625.00 元</span></div>
+                        <div class="salaryItem"><span class="salaryDetail">8625.00 元</span></div>
                     </div>
-                
+                    <img src="../../../static/images/icon/right_arrow_small.png" alt=""  width="16rem"  height="16rem" class="salaryNext">
+                </div>
             </div>
             <div class="tipItem">
                 <div class="tipTitle">
@@ -113,6 +117,7 @@
     </footer>
 </body>
 <script src="../../../static/js/swiper.js"></script>
+<script src="../../../static/js/prevNext.js"></script>
 <script>
     window.onload = function() {
         var rem = 100 * document.body.clientWidth / 1000;  
@@ -121,9 +126,10 @@
             rem = 100 * document.body.clientWidth / 1000;    
             document.body.style.fontSize = rem + 'px'; 
         };
-
+// ***************************************************************************************************************
         var carousel = document.getElementById('carousel');
         var aBtn = document.getElementsByTagName('ol')[0].getElementsByTagName('li');
+        var sliderContent = document.getElementsByClassName('carousel')[0];
         var slidersWidth  = document.getElementsByTagName('ul')[0];
         var sliders = document.getElementsByTagName('ul')[0].getElementsByTagName('li');
         var scroll = document.getElementsByClassName('scrollItem')[0];
@@ -131,67 +137,152 @@
         // 轮播长度
         slidersWidth.style.width = sliders.length*sliders[0].offsetWidth+"px";
         
-        setInterval(scrollNext,50);
-
+        var timer = setInterval(scrollNext,500);
         function scrollNext() {
-            var scrollNow = 0;
-            scrollNow++;
-                if(scrollNow == aBtn.length){
-                    scrollNow = 0;
-            }
-            // startMove(slidersWidth, {left: -4*now});
+            // alert("11");
+            // var scrollNow = 0;
+            // scrollNow++;
+            //     if(scrollNow == aBtn.length){
+            //         scrollNow = 0;
+            // }
+             startMove(scroll, {left: -sliders[0].offsetWidth*now});
         }
-      
-        
-       for(var i = 0;i<aBtn.length; i++){
-        aBtn[i].onclick = function(){
-             clearInterval(timer);
-             if(this.index == now)return;
-             now = this.index;
-             tab();
-            
-        }
-      }
+     
+
+ 
 
     //    导航器切换
       function tab(){
-          
             for(var i=0;i<aBtn.length;i++)
             {   
                 aBtn[i].className='';
             } 
             aBtn[now].className='active';
                     startMove(slidersWidth, {left: -sliders[0].offsetWidth*now});
-                    // console.log(sliders[now]);
                 }
              
            
+            
+
+
+        //   设置清除计时器
+        var timer = setInterval(next,2000);
+
+        //   鼠标移入清除计时器
+
         
+        for(var i=0;i<aBtn.length;i++){
+                        aBtn[i].index = i;
+                        aBtn[i].onclick = function (){
+                            if(now == this.index){
+                                        return;
+                                    }
+                                now = this.index;
+                                tab();
+                           console.log("timer:"+timer);
+                        };  
+                    }
 
-    // 跳转到指定的image
-    
 
-    // 自动
-      function next() {
+//*****************************左右滑动*****************************************//       
+ // 左滑
+    function prev()
+        {
+            now--;
+            if(now==-1)
+            {
+                now=aBtn.length-1;
+            }
+            
+            tab();
+        };   
+
+ //右滑
+ function next() {
           now++;
           if(now == aBtn.length){
               now = 0;
           }
           tab();
       }
-        //   设置清除计时器
-        var timer = setInterval(next,2000);
 
-        //   鼠标移入清除计时器
-        slidersWidth.onmouseover = function() {
-        clearInterval(timer);
-        }
+var startX = 0;
+var endX = 0;
 
-        //   重新设置清除计时器
-        slidersWidth.onmouseout = function() {
-        timer = setInterval(next,2000);
-        // console("timer");
-        }
+function touchEvent(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if(e.type == "touchstart"){
+        startX = e.touches[0].clientX;
+       
+    }else if(e.type == "touchmove"){
+        var currentX = e.touches[0].clientX;
+    
+        var distance = 0;
+        
+        }else if(e.type == "touchend"){
+            endX = e.changedTouches[0].clientX;
+            // 计算移动距离为正还是为负,取整
+            distance = parseInt(endX - startX);
+            console.log(distance);
+            if(distance == 0){
+                return
+            }else if(distance < 0){
+                next();
+            }else{
+                prev();
+            }
+    }
+}
+        sliderContent.addEventListener('touchstart',touchEvent,false);
+        sliderContent.addEventListener('touchmove',touchEvent,false);
+        sliderContent.addEventListener('touchend',touchEvent,false);
+//************************************************************************//
+
+// tab切换
+        for(var i=0;i<aBtn.length;i++){
+                aBtn[i].index = i;
+                aBtn[i].onclick = function (){
+                    clearInterval(timer);
+                    if(now == this.index){
+                        return;
+                    }
+                    now = this.index;
+                    
+                    tab();
+                };  
+            }
+
+ var salaryWrapper = document.querySelector('.salaryWrapper');
+ var salary = salaryWrapper.querySelector('.salary');
+ var salaryItem = salary.getElementsByClassName('salaryItem');
+ var salaryPrev = salaryWrapper.querySelector('.salaryPrev');
+ var salaryNext = salaryWrapper.querySelector('.salaryNext');
+//  console.log(next);
+//  console.log(salaryItem.length);
+ salaryPrev.onclick = function(){
+    {
+            now--;
+            if(now == -1)
+            {
+                now=salaryItem.length-1;
+            }
+            
+            startMove(salary, {left: -salaryItem[0].offsetWidth*now});
+        }; 
+ }
+
+ salaryNext.onclick = function(){
+    {
+            now++;
+            if(now == salaryItem.length)
+            {
+                now=0;
+            }
+            
+            startMove(salary, {right: salaryItem[0].offsetWidth*now});
+        }; 
+ }
     }
 
 </script>

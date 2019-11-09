@@ -55,7 +55,7 @@
             color: #ffffff;
             font-size: 1rem;
         }
-        input[type="radio"] + label,.alert {
+        input[type="radio"] + label,.alertId,.alertPhone {
             font-size: 1rem;
             color: #b22329;
             padding-bottom: 1rem;
@@ -108,12 +108,15 @@
             </div> 
 
             <div class="loginContent">
-                <div class="alert">
-                    <p>身份证或手机号格式错误</p>
+                <div class="alertId" style="display: none;">
+                    <p>身份证格式错误</p>
+                </div>
+                <div class="alertPhone" style="display: none;">
+                    <p>手机号格式错误</p>
                 </div>
                 <form action="" method="">
-                    <input type="text" class="loginItem" name="user_id" id="" placeholder="请输入身份证号">
-                    <input type="text" class="loginItem" name="phone_number" id="" placeholder="请输入手机号" attern="[0-9]{11}" title="请输入11位手机号" maxlength="11">
+                    <input type="text" class="loginItem" name="user_id" id="user_id" placeholder="请输入身份证号" onblur = testID();>
+                    <input type="text" class="loginItem" name="phone_number" id="phone_number" placeholder="请输入手机号" attern="[0-9]{11}" title="请输入11位手机号" maxlength="11" onblur = "testPhone()">
                     <input class="loginItem submit" type="submit" value="发送验证码">
                 </form>
                 <input class="loginRadio" type="radio" name="" id="radio" value=""/>
@@ -121,5 +124,41 @@
             </div>
         </div>
 
+        <script>
+            window.onload = function() {
+            
+    }
+        
+            var alertId = document.getElementsByClassName('alertId')[0];
+            var alertPhone = document.getElementsByClassName('alertPhone')[0];
+            
+            var radio = document.getElementById('radio');
+            console.log(radio.checkd);
+            if(radio.checkd){
+            }
+            function testID(){
+                idValue = document.getElementById('user_id').value;
+                var idReg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+                idReg.test(idValue);
+                if(idValue == 0){
+                if(idReg.test(idValue) == 1){
+                    return
+                }else{
+                    alertId.style.display = "block";
+                    }
+                }
+                }
+            function testPhone() {
+                phoneValue = document.getElementById('phone_number').value;
+                var phoneReg = /^1[3,4,5,6,7,8]\d{9}$/;
+                console.log(phoneReg.test(phoneValue));
+                if(phoneReg.test(phoneValue) == 1){
+                    return
+                }else{
+                    alertPhone  .style.display = "block";
+                }
+                
+            }
+        </script>
 </body>
 </html>

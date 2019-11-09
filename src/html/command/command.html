@@ -17,9 +17,9 @@
             padding-bottom: 0.5rem;
         }
         .command_content {
-            /* overflow: hidden; */
+            overflow: hidden;
             height: auto;
-            position: relative;
+            /* position: relative; */
         }
         .commandItem {
             flex: 1;
@@ -61,15 +61,13 @@
            padding: 1rem 0;
        }
        .add_command {
-        position: absolute;
-        left: 50%;
-        right: 50%;
-        margin-left: -6rem;
+        margin: 1rem auto;
         width: 10rem;
-        height: 1.5rem;
+        height: 1rem;
         background-color: #b22329;
         border-radius: 3rem;
-        padding: 1rem;  
+        padding: 1rem;
+        line-height: 1; 
        }
        .add_command span {
             color: #ffffff;
@@ -109,10 +107,36 @@
 	    background-color: rgba(0,0,0,0.5);
        }
        #alertContent {
-        width: 70%;
+        width: 80%;
+        border-radius: 20px;
         margin: 12rem auto;
        }
-       
+       .alertTitle {
+           padding: 1rem;
+       }
+       .alertTitle,.button_option {
+           text-align: center;
+           font-size: 1rem;
+           font-family: MicrosoftYaHei;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 1px;
+            line-height: 2;
+       }
+       .button {
+           display: flex;
+       }
+       .button_option:first-child {
+           border-right: 1px solid #afafaf;
+       }
+       .button_option {
+           flex: 1;
+           padding: 0.5rem;
+       }
+       .selectd {
+		background-color: #b22329;
+		color: #ffffff;
+	}
     </style>
 </head>
 <body>
@@ -294,17 +318,16 @@
 
             <div class="bgBlur" style="display: none;">
             <div id="alertContent">
-                    <div class="tipItem">
+                    <div class="tipItem" style="padding: 0;">
                             <div class="underLine">
-                                <div class="tipTitle">
-                                    <span>干活不认真</span> 
-                                    <div class="more">
-                                        <span><img src="../../../static/images/icon/st-sad-face.png" alt="" width="48rem;"></span>
-                                    </div>
+                                <div class="alertTitle">
+                                    <span>400 830 8339</span> 
                                 </div>
-                                <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
-                            </div>     
-                                <div class="tipContent"> 2017-10-11 </div>
+                            </div> 
+                            <div class="button">   
+                                <div class="button_option" id="cancel"> 取消 </div>
+                                <div class="button_option" id="enter"> 呼叫 </div>
+                            </div> 
                     </div>
             </div>
         </div>
@@ -322,6 +345,7 @@
     <script src="../../../static/js/swiper.js"></script>
 
 <script>
+   
         var command_content = document.querySelector('.command_content');
         // header 高度
         var headerHeight = document.querySelector('.headerWrapper');
@@ -340,33 +364,49 @@
         commandHeight = screen.height-parseInt(headerHeight)-parseInt(footerHeight)-tabHeight;
        
         // 文档区能显示的item个数
-        var count =Math.round(commandHeight/tipItem[0].offsetHeight);
+        // var count =Math.round(commandHeight/tipItem[0].offsetHeight);
         console.log("item:"+count);
-        // command_content.style.height = count*tipItem[0].offsetHeight+"px";
-        // console.log("height:"+command_content.style.height);
+        command_content.style.height = 5*tipItem[0].offsetHeight+"px";
+        console.log("height:"+command_content.style.height);
         command_1.style.height = tipItem.length*tipItem[0].offsetHeight+"px";
-        
+        var count = 0;
         
 
     function load() {
-        console.log(11);
-        console.log(parseInt(window.getComputedStyle(command_1,null).top) );
+        count--;
+            if(count==-1)
+            {
+                count=tipItem.length-1;
+            }
+        console.log(parseInt(window.getComputedStyle(command_1,null).height));
+        console.log(-tipItem[0].offsetHeight*count);
+        console.log(tipItem.length);
         
-            startMove(command_1,{top: -tipItem[0].offsetHeight*count});
+            startMove(command_1, {top: -tipItem[0].offsetHeight*count});
         }
-    
-    var bgBlur = document.querySelector('.bgBlur');
+        document.addEventListener('touchmove', function(e) {
+            // bgBlur.style.display = "block";
+        }, false) 
 
+    var bgBlur = document.querySelector('.bgBlur');
+    var cancel = document.getElementById('cancel');
+    var enter = document.getElementById('enter');
     function alertLawNumber() {
         bgBlur.style.display = "block";
     }
    
-    window.onclick = function close(e) {
+    window.onclick = function closeWindow(e) {
 
 	    if (e.target == bgBlur) {
 		    bgBlur.style.display = "none";
 	}
 }
+    cancel.onclick = function(){
+        cancel.classList.add("selectd");
+        // bgBlur.style.display = "none";
+    }
+    
+	
 </script>
 
 </body>
