@@ -2,7 +2,7 @@
 
 
 .carousel { 
-    width: 100%; 
+    width: 100vw; 
     height: 12.5rem; 
     overflow: hidden; 
     position: relative; 
@@ -66,8 +66,8 @@ ul li {
 }
 ul img { 
     float: left; 
-    width: auto; 
-    height: 12.5rem; 
+    width: 100vw; 
+    /* height: 12.5rem;  */
 }
 .carousel ul,ol {
     padding: 0;
