@@ -1,11 +1,17 @@
 /* author LX */
-
+.carouselWrapper{
+    position: relative;
+    overflow: hidden;
+}
 
 .carousel { 
     width: 100vw; 
-    height: 12.5rem; 
+    height: auto; 
     overflow: hidden; 
-    position: relative; 
+    /* position: relative;  */
+}
+.carouseBIMg {
+    position: absolute;
 }
 .carousel .text {
     width:100%; 
@@ -54,10 +60,11 @@ ol li {
     /* bottom: 2px;  */
 }
 
-ul { position: absolute; 
+ul { 
+    /* position: absolute;  */
     top: 0; 
     left: 0; 
-    z-index: 1; 
+    z-index: 9  ; 
 }
 ul li { 
     width: auto; 
@@ -80,9 +87,9 @@ ul img {
 }
 .scrollItem {
     /* width: 35rem; */
-    height: 2rem;
+    height: 2.5rem;
     background-color: #ffffff;
-    line-height: 1rem;
+    line-height: 2.5rem;
     padding-left: 0.5rem;
     border-bottom: 0.1rem solid #6e6e6e;
     overflow: hidden;

@@ -19,7 +19,7 @@
         .command_content {
             overflow: hidden;
             height: auto;
-            /* position: relative; */
+            position: relative;
         }
         .commandItem {
             flex: 1;
@@ -40,9 +40,8 @@
         }
         .added_part {
             position: absolute;
-            bottom: 3rem;
+            bottom: 1rem;
             left: 50%;
-            right: 50%;
             margin-left: -2rem;
         }
         .tipContent {
@@ -136,7 +135,14 @@
        .selectd {
 		background-color: #b22329;
 		color: #ffffff;
-	}
+    }
+    .contentWrapper {
+        padding-bottom: 0;
+    }
+    .command_1 {
+        position: relative;
+        display: block;
+    }
     </style>
 </head>
 <body>
@@ -157,7 +163,7 @@
         </div>
         <div class="command_content">
             <!-- 收到的评价 -->
-            <div id="command_1" style="display: block;">
+            <div id="command_1" class="command_1">
                 <div class="tipItem">
                         <div class="underLine">
                             <div class="tipTitle">
@@ -197,7 +203,7 @@
                 <div class="tipItem">
                         <div class="underLine">
                             <div class="tipTitle">
-                                <span>态度还不错</span> 
+                                <span>4态度还不错</span> 
                                 <div class="more">
                                     <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
                                 </div>
@@ -209,7 +215,7 @@
                 <div class="tipItem">
                         <div class="underLine">
                             <div class="tipTitle">
-                                <span>态度还不错</span> 
+                                <span>5态度还不错</span> 
                                 <div class="more">
                                     <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
                                 </div>
@@ -221,7 +227,7 @@
                 <div class="tipItem">
                         <div class="underLine">
                             <div class="tipTitle">
-                                <span>态度还不错</span> 
+                                <span>6态度还不错</span> 
                                 <div class="more">
                                     <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
                                 </div>
@@ -233,7 +239,7 @@
                 <div class="tipItem">
                         <div class="underLine">
                             <div class="tipTitle">
-                                <span>态度还不错</span> 
+                                <span>7态度还不错</span> 
                                 <div class="more">
                                     <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
                                 </div>
@@ -245,7 +251,7 @@
                 <div class="tipItem">
                         <div class="underLine">
                             <div class="tipTitle">
-                                <span>态度还不错</span> 
+                                <span>8态度还不错</span> 
                                 <div class="more">
                                     <span><img src="../../../static/images/icon/face.png" alt="" width="48rem;"></span>
                                 </div>
@@ -253,12 +259,11 @@
                             <div class="tipContent"><span class="content_company">广东建粤工程有限公司</span></div>
                         </div>     
                             <div class="tipContent"> 2017-10-11 </div>
-                </div>
-                <div class="added_part" onclick="load()">
-                        <img src="../../../static/images/icon/plus.png" alt="" width="64rem;">
-                </div>
+                </div>     
             </div>
-
+            <div class="added_part" onclick="load()">
+                    <img src="../../../static/images/icon/plus.png" alt="" width="64rem;">
+            </div>
             <!-- 发起的评价 -->
             <div id="command_2" style="display: none;">
                 <div class="tipItem">
@@ -362,27 +367,31 @@
         var tipItem = command_1.getElementsByClassName('tipItem');
         // 显示区域高度，screen.height显示器高度
         commandHeight = screen.height-parseInt(headerHeight)-parseInt(footerHeight)-tabHeight;
-       
+        console.log("commandHeight:"+commandHeight);
         // 文档区能显示的item个数
         // var count =Math.round(commandHeight/tipItem[0].offsetHeight);
         console.log("item:"+count);
-        command_content.style.height = 5*tipItem[0].offsetHeight+"px";
+        command_content.style.height = commandHeight+"px";
         console.log("height:"+command_content.style.height);
-        command_1.style.height = tipItem.length*tipItem[0].offsetHeight+"px";
-        var count = 0;
-        
 
-    function load() {
-        count--;
-            if(count==-1)
-            {
-                count=tipItem.length-1;
-            }
-        console.log(parseInt(window.getComputedStyle(command_1,null).height));
-        console.log(-tipItem[0].offsetHeight*count);
-        console.log(tipItem.length);
+        command_1.style.height = tipItem.length*tipItem[0].offsetHeight+"px";
+        // var count = 0;
         
-            startMove(command_1, {top: -tipItem[0].offsetHeight*count});
+    var count = 0;
+    function load() {
+        count++;
+            if(count > tipItem.length-2)
+            {
+                return;
+                // count=tipItem.length-1;
+            }else{
+                console.log(parseInt(window.getComputedStyle(command_1,null).height));
+                console.log(count);
+                console.log(tipItem.length);
+        
+                startMove(command_1, {top: -tipItem[0].offsetHeight*count});
+            }
+       
         }
         document.addEventListener('touchmove', function(e) {
             // bgBlur.style.display = "block";

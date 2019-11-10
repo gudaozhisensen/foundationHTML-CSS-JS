@@ -39,13 +39,15 @@
                 <li>&nbsp;</li>
 
             </ol>
-            <ul>
-                <li><a href=""><img src="../../../static/images/farmer.png"  width="100%"/></a></li>
-                <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
-                <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
-                <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
-               
-            </ul>
+            <div class="carouseBIMg">
+                <ul>
+                    <li><a href=""><img src="../../../static/images/farmer.png"  width="100%"/></a></li>
+                    <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
+                    <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
+                    <li><a href=""><img src="../../../static/images/farmer.png"  /></a></li>
+                
+                </ul>
+        </div>
         </div>
     </div>
     <div class="contentWrapper">
@@ -120,27 +122,34 @@
 <script src="../../../static/js/prevNext.js"></script>
 <script>
     window.onload = function() {
-        var rem = 100 * document.body.clientWidth / 1000;  
-        document.body.style.fontSize = rem + 'px';  
-        window.onresize = function() {    
-            rem = 100 * document.body.clientWidth / 1000;    
-            document.body.style.fontSize = rem + 'px'; 
-        };
+// **************根据不同尺寸的设备来计算出不同的font-size没有进行统一的设置*************************************//
+        // var rem = 10 * document.body.clientWidth / 1000;  
+        // console.log(rem);
+        // document.body.style.fontSize = rem + 'px';  
+        // window.onresize = function() {    
+        //     rem = 10 * document.body.clientWidth / 1000;    
+        //     document.body.style.fontSize = rem + 'px';
+        //     console.log();
+        // };
 // ***************************************************************************************************************
+        
+        var carouselWrapper = document.querySelector('.carouselWrapper');
         var carousel = document.getElementById('carousel');
         var aBtn = document.getElementsByTagName('ol')[0].getElementsByTagName('li');
         var sliderContent = document.getElementsByClassName('carousel')[0];
-        var slidersWidth  = document.getElementsByTagName('ul')[0];
-        var sliders = document.getElementsByTagName('ul')[0].getElementsByTagName('li');
+        var slidersWidth  = document.getElementsByClassName('carouseBIMg')[0];
+        var sliders = slidersWidth.getElementsByTagName('li');
         var scroll = document.getElementsByClassName('scrollItem')[0];
         var now = 0;
+        let plus = 0;
+
         // 轮播长度
         slidersWidth.style.width = sliders.length*sliders[0].offsetWidth+"px";
-        
+        carouselWrapper.style.height = sliders[0].offsetHeight+"px";
         var timer = setInterval(scrollNext,500);
         function scrollNext() {
             
-             startMove(scroll, {left: -sliders[0].offsetWidth*now});
+             startMove(scroll, {left: -4*now});
         }
      
 
@@ -160,12 +169,9 @@
             
 
 
-        //   设置清除计时器
-        var timer = setInterval(next,2000);
+        //   设置计时器,轮播间隔时间
+        var timer = setInterval(next,3000);
 
-        //   鼠标移入清除计时器
-
-        
         for(var i=0;i<aBtn.length;i++){
                         aBtn[i].index = i;
                         aBtn[i].onclick = function (){
@@ -180,6 +186,9 @@
 
 
 //*****************************左右滑动*****************************************//       
+// 当滑动距离为-时，说明向左划
+// 滑动距离为+时，向右划
+
  // 左滑
     function prev()
         {
@@ -188,7 +197,6 @@
             {
                 now=aBtn.length-1;
             }
-            
             tab();
         };   
 
@@ -201,6 +209,7 @@
           tab();
       }
 
+// touch事件
 var startX = 0;
 var endX = 0;
 
@@ -209,12 +218,9 @@ function touchEvent(e) {
     e.preventDefault();
     if(e.type == "touchstart"){
         startX = e.touches[0].clientX;
-       
     }else if(e.type == "touchmove"){
         var currentX = e.touches[0].clientX;
-    
         var distance = 0;
-        
         }else if(e.type == "touchend"){
             endX = e.changedTouches[0].clientX;
             // 计算移动距离为正还是为负,取整
@@ -232,6 +238,7 @@ function touchEvent(e) {
         sliderContent.addEventListener('touchstart',touchEvent,false);
         sliderContent.addEventListener('touchmove',touchEvent,false);
         sliderContent.addEventListener('touchend',touchEvent,false);
+
 //************************************************************************//
 
 // tab切换
@@ -243,7 +250,6 @@ function touchEvent(e) {
                         return;
                     }
                     now = this.index;
-                    
                     tab();
                 };  
             }
@@ -253,32 +259,36 @@ function touchEvent(e) {
  var salaryItem = salary.getElementsByClassName('salaryItem');
  var salaryPrev = salaryWrapper.querySelector('.salaryPrev');
  var salaryNext = salaryWrapper.querySelector('.salaryNext');
-//  console.log(next);
-//  console.log(salaryItem.length);
+
+// *************************************工资item滑动**********************************************************//
+// 当划到最左或最右时，停止滑动
+
  salaryPrev.onclick = function(){
     {
-            now--;
-            if(now == -1)
+        if(plus < 1)
             {
-                now=salaryItem.length-1;
+                return;
+            }else{
+                plus--;
+                console.log("prev:"+plus);
+                startMove(salary, {left: -salaryItem[0].offsetWidth*plus});
             }
-            
-            startMove(salary, {left: -salaryItem[0].offsetWidth*now});
         }; 
  }
 
  salaryNext.onclick = function(){
-    {
-            now++;
-            if(now == salaryItem.length)
+    {   
+        if(plus == salaryItem.length-2)
             {
-                now=0;
+                return;
+            }else{
+                plus++;
+            console.log("next:"+plus);
+            startMove(salary, {right: salaryItem[0].offsetWidth*plus});
             }
-            
-            startMove(salary, {right: salaryItem[0].offsetWidth*now});
         }; 
- }
     }
+}
 
 </script>
 
